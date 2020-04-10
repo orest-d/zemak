@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.9.95/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.18/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>ZeMaK</title>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-navigation-drawer v-model="drawer" app>
+                <v-list dense>
+                    <v-list-item href="/">
+                        <v-list-item-action>
+                            <v-icon>mdi-home</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Home</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item @click="mode='about'">
+                        <v-list-item-action>
+                            <v-icon>mdi-information-outline</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>About</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item href="https://github.com/orest-d/zemak">
+                        <v-list-item-action>
+                            <v-icon>mdi-source-repository</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Site</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+
+            <v-app-bar app color="indigo" dark>
+                <v-btn icon @click.stop="drawer = !drawer">
+                    <v-icon>mdi-keyboard-variant</v-icon>
+                </v-btn>
+                <v-btn text v-for="item in grids" @click="mode='macro';screen_grid=item">{{item.label}}
+                </v-btn>
+            </v-app-bar>
+            <v-content v-if="mode=='about'">
+                <v-container class="fill-height" fluid>
+                    <v-row>
+                        <v-col>
+                            <v-card tile>
+                                <v-card-text>
+                                    <h1>ZeMaK - Zero Macro Keyboard</h1>
+                                    <p>Simplistic macro keyboard from Raspberry Pi Zero.</p>
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-btn text color="deep-purple accent-4" @click="mode='macro'">
+                                        OK
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-content>
+            <v-content v-if="mode=='macro'">
+                <v-container class="fill-height" fluid>
+                    <v-row v-for="row in screen_grid.grid" align="start" justify="space-between" no-gutters>
+                        <v-col v-for="item in row" :cols="item.cols">
+                            <v-card class="pa-4 ma-0" outlined tile>
+                                <v-btn elevation="5" block x-large @click="exec(item.id)" style="width:100%;"
+                                    :color="item.color">
+                                    {{item.label}}
+                                </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-content>
+            <v-footer color="indigo" app>
+                <v-chip :color="status_color">{{status}}</v-chip>&nbsp;&nbsp;<span>{{message}}</span>
+                <v-spacer></v-spacer>
+                <span class="white--text">Orest Dubay &copy; 2020 </span>
+            </v-footer>
+        </v-app>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.18/dist/vuetify.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

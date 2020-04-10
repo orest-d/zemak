@@ -1,0 +1,96 @@
+- id: misc
+  label: "Linux"
+  grid:
+
+    - - id: google_search
+        label: "Google Search"
+        cols: 6
+        color: red
+        macro: |
+          ALT F2
+          "firefox\n"
+          SLEEP 0.3
+          CONTROL K
+          BACKSPACE
+          BACKSPACE
+          "www.google.com\n"
+          TAB
+      - id: google_translate
+        label: "Google Translate"
+        cols: 6
+        macro: |
+          ALT F2
+          "firefox\n"
+          SLEEP 0.3
+          CONTROL K
+          BACKSPACE
+          BACKSPACE
+          "translate.google.com\n"
+          TAB
+    - - id: code
+        label: "VS Code"
+        cols: 6
+        color: red
+        macro: |
+          ALT F2
+          "code\n"
+          SLEEP 3.0
+          CONTROL K
+          CONTROL P
+          "edt PIO\n"mc
+          
+          CONTROL W
+          ESCAPE
+      - id: mc
+        label: "MC"
+        color: yellow
+        macro: |
+          CONTROL ALT T
+          SLEEP 0.2
+          "mc\n"
+          SLEEP 0.2
+          F11
+
+- id: test
+  label: "Test Screen"
+  grid:
+    - - id: test1
+        label: "Test 1"
+        cols: 1
+        icon: bank
+        macro: |
+          # Test macro
+          CONTROL ALT T
+          SLEEP 0.2
+          "ls\n"
+          "echo 1"
+      - id: test2
+        label: "Test 2"
+        cols: 1
+        icon: bank
+        macro: |
+          # Test macro
+          CONTROL ALT T
+          SLEEP 0.2
+          "ls\n"
+          "echo 2"
+    - - id: test3
+        label: "Test 3"
+        cols: 1
+        icon: bank
+        macro: |
+          # Test macro
+          CONTROL ALT T
+          SLEEP 0.2
+          "ls\n"
+          "echo 3"
+      - id: test4
+        label: "Test 4"
+        cols: 1
+        icon: bank
+        macro: |
+          # Test macro
+          CONTROL ALT T
+          SLEEP 0.2
+          "ls\n"
+          "echo 4"
