@@ -6,6 +6,6 @@ Webapp can send predefined keyboard macros to the computer as if it would be typ
 You can define multiple screens of macros by changing the macros.yaml file.
 
 ## Credits
-* Based on Danny Dasilva's code: [https://github.com/Danny-Dasilva/Py_Keyboard]
-* It would not work without this tutorial: [https://randomnerdtutorials.com/raspberry-pi-zero-usb-keyboard-hid/]
+* Based on [Danny Dasilva's code](https://github.com/Danny-Dasilva/Py_Keyboard)
+* It would not work without this [tutorial](https://randomnerdtutorials.com/raspberry-pi-zero-usb-keyboard-hid/)
 
