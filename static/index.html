@@ -22,6 +22,14 @@
                             <v-list-item-title>Home</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
+                    <v-list-item @click="mode='edit'">
+                        <v-list-item-action>
+                            <v-icon>mdi-file-edit-outline</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Edit</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
                     <v-list-item @click="mode='about'">
                         <v-list-item-action>
                             <v-icon>mdi-information-outline</v-icon>
@@ -60,6 +68,31 @@
                                 <v-card-actions>
                                     <v-btn text color="deep-purple accent-4" @click="mode='macro'">
                                         OK
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-content>
+            <v-content v-if="mode=='edit'">
+                <v-container class="fill-height" fluid>
+                    <v-row>
+                        <v-col>
+                            <v-card tile>
+                                <v-card-text>
+                                    <v-textarea solo label="Macro definition" v-model="macro_text" rows="12"></v-textarea>
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-btn text color="deep-purple accent-4" @click="save_macro_text()">
+                                        Save
+                                    </v-btn>
+                                    <v-btn text color="deep-purple accent-4" @click="reload_macro_text()">
+                                        Reset
+                                    </v-btn>
+                                    <v-btn text color="deep-purple accent-4" @click="mode='macro'">
+                                        Cancel
                                     </v-btn>
                                 </v-card-actions>
                             </v-card>

@@ -16,6 +16,7 @@ window.vue =new Vue({
       query: '',
       query_basis: '',
       message: "",
+      macro_text:"",
       grids:[],
       screen_grid:{id:"-",label:"-", grid:[]},
       url_prefix: "/macro/",      
@@ -58,6 +59,25 @@ window.vue =new Vue({
                 }.bind(this), function (reason) { this.error("Json error ("+i+")", reason); }.bind(this));
             }.bind(this), function (reason) { this.error(""+i+" loading error", reason); }.bind(this));
         },
+        save_macro_text: function(){
+            console.log("Save macro definition");
+            this.info("Saving macro definition");
+            this.$http.post("/api/save", {data:this.macro_text}).then(function (response) {
+                response.json().then(function (data) {
+                    this.log_data(data);
+                    this.load_grids();
+                }.bind(this), function (reason) { this.error("Json error", reason); }.bind(this));
+            }.bind(this), function (reason) { this.error("Save error", reason); }.bind(this));
+        },
+        reload_macro_text: function(){
+            console.log("Reload macro definition");
+            this.info("Reloading macro definition");
+            this.$http.get("/api/load.yaml").then(function (response) {
+                this.macro_text = response.body;
+                this.info("Macro definition reloaded.")
+                this.load_grids();
+            }.bind(this), function (reason) { this.error("Reload error", reason); }.bind(this));
+        }
     },
     computed: {
         status_color: function () {
@@ -72,5 +92,6 @@ window.vue =new Vue({
     },
     created:function(){
         this.load_grids();
+        this.reload_macro_text();
     }
   })
